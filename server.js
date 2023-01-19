@@ -30,6 +30,18 @@ db.on('connected', () => console.log('mongoDB connected: '));
 app.use(express.urlencoded({ extended: false }));
 
 // seed route
+const data = require('./data');
+
+app.get('/books/seed', (req, res) => {
+
+    Book.deleteMany({}, (err, results) => {
+        Book.create(data, (err, books) => {
+            res.redirect('/books');
+        })
+    })
+
+    
+})
 
 // INDUCES routes
 

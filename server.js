@@ -80,8 +80,8 @@ app.post('/books', (req,res) => {
 // show route
 app.get("/books/:id", (req, res) => {
     Book.findById(req.params.id, (err, foundBook) => {
-        res.send(foundBook)
-        
+        res.render("show.ejs", {book: foundBook} )
+
     })
 })
 

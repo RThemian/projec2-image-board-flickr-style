@@ -1,23 +1,24 @@
 <nav>
     <ul>
+        <% if (locals.user) { %>
         <li>
             <a href="/books">See Book List</a>
         </li>
         <li>
             <a href="/books/new">Add a Book</a>
-
         </li>
+        <!-- log out -->
+        <li>
+            <a href="/logout">Log Out</a>
+        </li>
+
+        <% } else { %>
         <li>
             <a href="/signup">Sign Up</a>
         </li>
         <li>
             <a href="/login">Log In</a>
         </li>
-        <li>
-            <a href="/logout">Log Out</a>
-        </li>
-
-
-
+        <% } %>
     </ul>
 </nav>

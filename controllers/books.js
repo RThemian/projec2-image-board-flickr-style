@@ -31,9 +31,7 @@ router.get('/books/seed', (req, res) => {
 
 // index route
 // Index
-router.get("/", (req, res) =>{
-    res.redirect("/books");
-})
+
 
 
 router.get("/books", (req, res) => {

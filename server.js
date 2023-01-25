@@ -31,6 +31,9 @@ db.on('connected', () => console.log('mongoDB connected: '));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 
+app.get('/', (req, res) => {
+    res.render("home.ejs");})
+
 app.use(booksRouter);
 
 

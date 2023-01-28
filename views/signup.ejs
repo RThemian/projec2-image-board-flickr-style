@@ -9,6 +9,9 @@
 <body>
     <%- include('partials/nav') %>
     <h1>Sign Up!</h1>
+    <% if(error) { %>
+        <p style="color: red;"><%= error %></p>
+    <% } %>
     <form action="/signup" method="POST">
         <!-- use a post request to add a new user: email and password -->
         <label for="email">
@@ -19,6 +22,10 @@
         <label for="password">
             Password:
             <input type="password" name="password" id="password" required>
+        </label>
+        <label for="password">
+            Password Confirmation:
+            <input type="password" name="passwordConf" id="passwordConf" required>
         </label>
         <input type="submit" value="Sign Up">
     </form>

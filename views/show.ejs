@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Show Photo Description</title>
 </head>
 <body>
     <%- include('partials/nav') %>
-    <nav><a href="/books">Back to Books Index</a></nav>
-    <h1><%= book.title %></h1>
-   <p> Author: <%= book.author %></p>
-    <p> Completed: <%- book.completed ? "Yes" : "No" %></p>
+    <nav><a href="/photos">Back to Photostream</a></nav>
+    <img src="<%= photo.imageLink %>" alt="<%= photo.title %>">
+    <h1><%= photo.title %></h1>
+   <p> Location: <%= photo.location %></p>
+    <p> Safe For Work?: <%- photo.safeForWork ? "Yes" : "No" %></p>
 
 </body>
 </html>

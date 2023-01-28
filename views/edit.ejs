@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book List</title>
+    <title>Photostream List</title>
 </head>
 <body>
     <%- include('partials/nav') %>
-    <h1>Edit Book</h1>
-    <form action="/books/<%=book._id%>?_method=PUT" method ="POST">
-        Title: <input type="text" name="title" value="<%= book.title %>">
+    <h1>Edit Photo</h1>
+    <form action="/photos/<%=photo._id%>?_method=PUT" method ="POST">
+        Title: <input type="text" name="title" value="<%= photo.title %>">
         <br/>
-        Author: <input type="text" name="author" value="<%= book.author %>">
+        Location: <input type="text" name="author" value="<%= photo.location %>">
         <br/>
-        Completed: <input type="checkbox" name="completed" <% if(book.completed
+        Safe For Work: <input type="checkbox" name="completed" <% if(photo.safeForWork
         === true){ %> checked <% } %> />
         <br />
-        <input type="submit" value="Update Book">
+        <input type="submit" value="Update Photo">
     </form>
 </body>
 </html>

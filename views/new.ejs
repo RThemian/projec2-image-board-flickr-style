@@ -4,19 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add new photo</title>
 </head>
 <body>
     <%- include('partials/nav') %>
-    <h1>New Book Page</h1>
-    <form action="/books" method="POST">
+    <h1>New Photo Page</h1>
+    <form action="/photos" method="POST" enctype="multipart/form-data" autocomplete="off">
         Title: <input type="text" name="title"/>
-        <br>
-        Author: <input type="text" name="author"/>
-        <br>
-        Completed: <input type="checkbox" name="completed"/>
-        <br>
-        <input type="submit" value="Add Book"/>
+        Location: <input type="text" name="author"/>
+        Safe For Work: <input type="checkbox" name="safeForWork"/>
+        Image Link: <input type="file" name="imageLink"/>
+        <input type="submit" value="Add Photo"/>
     </form>
 </body>
 </html> 

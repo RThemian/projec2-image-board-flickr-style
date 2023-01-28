@@ -3,9 +3,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
-const booksRouter = require('./controllers/books.js');
+const photosRouter = require('./controllers/photos.js');
 const methodOverride = require("method-override");
 const userRouter = require('./controllers/users.js');
+const fileUpload = require('express-fileupload');
+const cloudinary = require('cloudinary').v2;
+
+
 // create express app
 const app = express();
 
@@ -13,6 +17,12 @@ const app = express();
 // configure settings
 //this must come before any process.env variables are used
 require('dotenv').config();
+
+cloudinary.config({ 
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY, 
+    api_secret: process.env.API_SECRET,
+  });
 
 
 //connect to database
@@ -41,20 +51,35 @@ app.use(session({
 // resave is set to false because we don't want to save the session if nothing has changed (it is a performance optimization)
 // saveUninitialized is set to false because we don't want to save an empty value for the session if a user is not logged in (it is a performance optimization)
 
+
+// pass in a settings object to configure the file upload middleware
+app.use(fileUpload({createParentPath: true}));
+
+
 app.use((req, res, next) => {
     // custom middleware to inspect the session
     console.log(req.session);
     next(); // this is a middleware function that will run on every request and log the session to the console, runs the next function in the middleware stack
 
 });
+// this is a middleware function that will run on every request and log the session to the console, runs the next function in the middleware stack
+app.use((req, res, next) => {
+    // custom middleware to inspect the session
+    if(req.session.userId) {
+        res.locals.user = req.session.userId;
+    } else {
+        res.locals.user = null;
+    }
+    next(); // this is a middleware function that will run on every request and log the session to the console, runs the next function in the middleware stack
+});
+
+
 
 // authenication middleware
 function isAuthenticated(req, res, next) {
     if(!req.session.userId) {
-        res.locals.user = null;
         return res.redirect('/login'); 
     }
-    res.locals.user = req.session.userId; // this is the id of the user in the database that is logged in
     // res.locals is an object that is available in all of the views and can be used to pass data to the views
     next();
 }
@@ -66,7 +91,7 @@ app.get('/', (req, res) => {
 app.use(userRouter);
 
 
-app.use(isAuthenticated, booksRouter); // isAuthenticated is a middleware function that will run on every request to the books route and checks to see if the user is logged in, if not, it will redirect to the login page
+app.use(photosRouter); // isAuthenticated is a middleware function that will run on every request to the photos route and checks to see if the user is logged in, if not, it will redirect to the login page
 
 
 

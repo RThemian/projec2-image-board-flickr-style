@@ -1,11 +1,13 @@
+<% console.log(locals)%>
+
 <nav>
     <ul>
-        <% if (locals.user) { %>
+        <% if (user) { %>
         <li>
-            <a href="/books">See Book List</a>
+            <a href="/photos">See Photostream</a>
         </li>
         <li>
-            <a href="/books/new">Add a Book</a>
+            <a href="/photos/new">Add a Photo</a>
         </li>
         <!-- log out -->
         <li>

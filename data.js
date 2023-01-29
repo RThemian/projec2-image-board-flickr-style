@@ -22,5 +22,9 @@ module.exports = [{
   title: "Tower Bridge",
   location: "London, England",
   imageLink: "https://media.architecturaldigest.com/photos/56e877266836c03a28818255/master/w_1600%2Cc_limit/london-architectural-landmarks-07.jpg"
-}
+},
+{
+  title: "Brooklyn Bridge",
+  location: "New York, NY",
+  imageLink: "https://media.architecturaldigest.com/photos/599f490323d3b572f5c5c0a9/master/w_1600%2Cc_limit/Brooklyn%2520Bridge.jpg"},
 ]
